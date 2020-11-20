@@ -13,9 +13,9 @@ namespace DataCapture.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly ICustomerDetailsDataSimple db;
+        private readonly ICustomerDetailsRepository db;
 
-        public IndexModel(ILogger<IndexModel> logger, ICustomerDetailsDataSimple db)
+        public IndexModel(ILogger<IndexModel> logger, ICustomerDetailsRepository db)
         {
             _logger = logger;
             this.db = db;

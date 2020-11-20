@@ -15,12 +15,12 @@ namespace DataCapture.DataAccess.CustomerDetailsData
     /// 
     /// Much easier to implement and use but less scalable in the long run.
     /// </summary>
-    public class CustomerDetailsDataSimple : ICustomerDetailsDataSimple
+    public class CustomerDetailsRepository : ICustomerDetailsRepository
     {
         private readonly string connectionString;
         private readonly ISqliteDataAccess db;
 
-        public CustomerDetailsDataSimple(string connectionString, ISqliteDataAccess db)
+        public CustomerDetailsRepository(string connectionString, ISqliteDataAccess db)
         {
             this.connectionString = connectionString;
             this.db = db;

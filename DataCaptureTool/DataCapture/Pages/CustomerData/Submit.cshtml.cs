@@ -11,9 +11,9 @@ namespace DataCapture.Pages.CustomerData
 {
     public class SubmitModel : PageModel
     {
-        private readonly ICustomerDetailsDataSimple db;
+        private readonly ICustomerDetailsRepository db;
 
-        public SubmitModel(ICustomerDetailsDataSimple db)
+        public SubmitModel(ICustomerDetailsRepository db)
         {
             this.db = db;
         }
@@ -25,7 +25,7 @@ namespace DataCapture.Pages.CustomerData
         {
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {

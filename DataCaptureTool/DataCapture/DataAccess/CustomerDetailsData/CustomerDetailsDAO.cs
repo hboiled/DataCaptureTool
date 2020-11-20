@@ -4,16 +4,17 @@ using DataCapture.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DataCapture.DataAccess.CustomerDetailsData
 {
-    public class CustomerDetailsData
+    public class CustomerDetailsDAO : ICustomerDetailsDAO
     {
         private readonly string connectionString;
         private readonly ISqliteDataAccess db;
 
-        public CustomerDetailsData(string connectionString, ISqliteDataAccess db)
+        public CustomerDetailsDAO(string connectionString, ISqliteDataAccess db)
         {
             this.connectionString = connectionString;
             this.db = db;
@@ -21,95 +22,61 @@ namespace DataCapture.DataAccess.CustomerDetailsData
 
         public List<CustomerDetailsViewModel> GetCustomerDetails()
         {
-            string sqlStatement = "SELECT * FROM Customers";
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.Number, DriversLicenses.DriversLicenseNumber FROM Customers ");
+            sql.Append("INNER JOIN Addresses on Addresses.CustomerId = Customers.Id ");
+            sql.Append("INNER JOIN PhoneNumbers on PhoneNumbers.CustomerId = Customers.Id ");
+            sql.Append("INNER JOIN DriversLicenses on DriversLicenses.CustomerId = Customers.Id ");
 
-            List<CustomerDetails> customers = db.LoadData<CustomerDetails, dynamic>(
+            string sqlStatement = sql.ToString();
+
+            List<CustomerDetailsViewModel> customers = db.LoadData<CustomerDetailsViewModel, dynamic>(
                 sqlStatement,
                 new { },
                 connectionString);
 
-            List<CustomerDetailsViewModel> customerDetails = new List<CustomerDetailsViewModel>();
-
-            foreach (var customer in customers)
-            {
-                CustomerDetailsViewModel c = MapToCustomerDetailsVM(customer);
-                customerDetails.Add(c);
-            }
-
-            return customerDetails;
+            return customers;
         }
 
         // calling method should null check
         public CustomerDetailsViewModel GetCustomerById(int id)
         {
-            string sqlStatement = "SELECT * FROM Customers WHERE Id = @Id";
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.Number, DriversLicenses.DriversLicenseNumber FROM Customers ");
+            sql.Append("INNER JOIN Addresses on Addresses.CustomerId = Customers.Id ");
+            sql.Append("INNER JOIN PhoneNumbers on PhoneNumbers.CustomerId = Customers.Id ");
+            sql.Append("INNER JOIN DriversLicenses on DriversLicenses.CustomerId = Customers.Id ");
+            sql.Append("WHERE Customers.Id = @Id ");
 
-            CustomerDetails customer = db.LoadData<CustomerDetails, dynamic>(
+            string sqlStatement = sql.ToString();
+
+            CustomerDetailsViewModel customer = db.LoadData<CustomerDetailsViewModel, dynamic>(
                 sqlStatement,
                 new { Id = id },
                 connectionString)
                 .FirstOrDefault();
 
-            return MapToCustomerDetailsVM(customer);
+            return customer;
         }
 
-        private CustomerDetailsViewModel MapToCustomerDetailsVM(CustomerDetails customer)
-        {
-            int customerId = customer.Id;
+        //private CustomerDetailsViewModel MapToCustomerDetailsVM(CustomerDetails customer)
+        //{
+        //    int customerId = customer.Id;
 
-            var phoneNumber = GetPhoneNumberById(customerId);
-            var driversLicense = GetDriversLicenseById(customerId);
+        //    var phoneNumber = GetPhoneNumberById(customerId);
+        //    var driversLicense = GetDriversLicenseById(customerId);
 
-            CustomerDetailsViewModel customerDetails = new CustomerDetailsViewModel
-            {
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                DateOfBirth = customer.DateOfBirth,
-                PhoneNumber = phoneNumber.Number,
-                DriversLicenseNumber = driversLicense.DriversLicenseNumber
-            };
+        //    CustomerDetailsViewModel customerDetails = new CustomerDetailsViewModel
+        //    {
+        //        FirstName = customer.FirstName,
+        //        LastName = customer.LastName,
+        //        DateOfBirth = customer.DateOfBirth,
+        //        PhoneNumber = phoneNumber.Number,
+        //        DriversLicenseNumber = driversLicense.DriversLicenseNumber
+        //    };
 
-            return customerDetails;
-        }
-
-        private PhoneNumber GetPhoneNumberById(int id)
-        {
-            string sqlStatement = "SELECT * FROM PhoneNumbers WHERE Id = @Id";
-
-            var phoneNumber = db.LoadData<PhoneNumber, dynamic>(
-                sqlStatement,
-                new { Id = id },
-                connectionString)
-                .FirstOrDefault();
-
-            return phoneNumber;
-        }
-
-        private DriversLicense GetDriversLicenseById(int id)
-        {
-            string sqlStatement = "SELECT * FROM DriversLicenses WHERE Id = @Id";
-
-            var driversLicense = db.LoadData<DriversLicense, dynamic>(
-                sqlStatement,
-                new { Id = id },
-                connectionString)
-                .FirstOrDefault();
-
-            return driversLicense;
-        }
-
-        private Address GetAddressById(int id)
-        {
-            string sqlStatement = "SELECT * FROM Addresses WHERE Id = @Id";
-
-            var address = db.LoadData<Address, dynamic>(
-                sqlStatement,
-                new { Id = id },
-                connectionString)
-                .FirstOrDefault();
-
-            return address;
-        }
+        //    return customerDetails;
+        //}
 
         public int SaveCustomerDetails(CustomerDetailsViewModel customer)
         {
@@ -147,13 +114,13 @@ namespace DataCapture.DataAccess.CustomerDetailsData
                 sqlSaveDriversLicense,
                 new { CustomerId = customerId, DriversLicenseNumber = customer.DriversLicenseNumber },
                 connectionString);
-            
+
             // save address
             string sqlSaveAddress = "INSERT INTO Addresses (CustomerId, StreetAddress) " +
                 "values (@CustomerId, @StreetAddress);";
 
             db.ExecuteStatement<dynamic>(
-                sqlSaveDriversLicense,
+                sqlSaveAddress,
                 new { CustomerId = customerId, StreetAddress = customer.StreetAddress },
                 connectionString);
 

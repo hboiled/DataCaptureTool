@@ -11,9 +11,9 @@ namespace DataCapture.Pages.CustomerData
 {
     public class CustomersModel : PageModel
     {
-        private readonly ICustomerDetailsDataSimple db;
+        private readonly ICustomerDetailsRepository db;
 
-        public CustomersModel(ICustomerDetailsDataSimple db)
+        public CustomersModel(ICustomerDetailsRepository db)
         {
             this.db = db;
         }
