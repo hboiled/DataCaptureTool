@@ -1,0 +1,27 @@
+﻿@page
+@model DataCapture.Pages.CustomerData.CustomersModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h1>View Customer Details</h1>
+
+
+@foreach (var item in Model.CustomerDetails)
+{
+    <div class="row no-gutters">
+        <div class="card mb-3 col-md-12" style="max-width: 600px;">
+
+
+            <div class="card-body">
+                <h5 class="card-title">@item.FullName.</h5>
+                <p class="card-text">
+                    <small class="text-muted">
+                       @item.DateOfBirth.ToShortDateString()
+                    </small>
+                </p>
+            </div>
+
+        </div>
+    </div>
+}

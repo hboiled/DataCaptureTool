@@ -53,8 +53,8 @@ namespace DataCapture.DataAccess.CustomerDetailsData
 
         public int SaveCustomerDetails(CustomerDetailsViewModel customer)
         {
-            string sqlStatement = $"INSERT INTO CustomersSimple (FirstName, LastName, DateOfBirth, PhoneNumber, DriversLicenseNumber) " +
-                "values (@FirstName, @LastName, @DateOfBirth, @PhoneNumber, @DriversLicenseNumber);"
+            string sqlStatement = "INSERT INTO CustomersSimple (FirstName, LastName, DateOfBirth, PhoneNumber, DriversLicenseNumber, StreetAddress) " +
+                "values (@FirstName, @LastName, @DateOfBirth, @PhoneNumber, @DriversLicenseNumber, @StreetAddress);"
                 + "select last_insert_rowid();";
 
             int customerId = db.LoadData<int, dynamic>(
@@ -65,7 +65,8 @@ namespace DataCapture.DataAccess.CustomerDetailsData
                     LastName = customer.LastName,
                     DateOfBirth = customer.DateOfBirth,
                     PhoneNumber = customer.PhoneNumber,
-                    DriversLicenseNumber = customer.DriversLicenseNumber
+                    DriversLicenseNumber = customer.DriversLicenseNumber,
+                    StreetAddress = customer.StreetAddress
                 },
                 connectionString)
                 .FirstOrDefault();

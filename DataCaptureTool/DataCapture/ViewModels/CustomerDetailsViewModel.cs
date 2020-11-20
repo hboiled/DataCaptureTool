@@ -29,6 +29,10 @@ namespace DataCapture.ViewModels
         [DisplayName("Drivers License Number:")]
         public string DriversLicenseNumber { get; set; }
 
+        [Required]
+        [DisplayName("Street Address:")]
+        public string StreetAddress { get; set; }
+
         public string FullName 
         {
             get 

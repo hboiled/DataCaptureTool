@@ -20,7 +20,7 @@ namespace DataCapture.DataAccess.Sqlite
             }
         }
 
-        public void SaveData<T>(string sqlStatement, T parameters, string connectionString)
+        public void ExecuteStatement<T>(string sqlStatement, T parameters, string connectionString)
         {
             using (IDbConnection connection = new SQLiteConnection(connectionString))
             {
