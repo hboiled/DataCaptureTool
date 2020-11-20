@@ -1,0 +1,40 @@
+﻿using DataCapture.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DataCapture.ViewModels
+{
+    public class CustomerDetailsViewModel
+    {  
+        [Required]
+        [DisplayName("First Name:")]
+        public string FirstName { get; set; }
+        
+        [Required]
+        [DisplayName("Last Name:")]
+        public string LastName { get; set; }
+
+        [DisplayName("Date of Birth:")]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        [DisplayName("Phone Number:")]
+        public int PhoneNumber { get; set; }
+        
+        [Required]
+        [DisplayName("Drivers License Number:")]
+        public string DriversLicenseNumber { get; set; }
+
+        public string FullName 
+        {
+            get 
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
+    }
+}
