@@ -45,7 +45,7 @@
             </p>
         </div>
     </div>
-    <div class="detailsSection botBorder">
+    <div class="detailsSection">
         <h4 class="botBorder">@Html.DisplayNameFor(model => model.CustomerDetails.DriversLicenseNumber)</h4>
         <div class="field">
             <p class="labelContent">
@@ -56,11 +56,22 @@
             </p>
         </div>
     </div>
+    <div class="detailsSection botBorder">
+        <h4 class="botBorder">@Html.DisplayNameFor(model => model.CustomerDetails.StreetAddress)</h4>
+        <div class="field">
+            <p class="labelContent">
+                Address:
+            </p>
+            <p class="personContent">
+                @Html.DisplayFor(model => model.CustomerDetails.StreetAddress)
+            </p>
+        </div>
+    </div>
 </div>
 
 <br />
 
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-page="Customers">Back to List</a>
 </div>

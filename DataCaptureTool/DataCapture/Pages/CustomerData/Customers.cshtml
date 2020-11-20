@@ -4,24 +4,39 @@
     ViewData["Title"] = "Customers";
 }
 
-<h1>View Customer Details</h1>
+<div class="text-center">
+    <h1>View Customer Details</h1>
+    <hr />
 
+    <p>Organised according to last name.</p>
+</div>
 
-@foreach (var item in Model.CustomerDetails)
-{
-    <div class="row no-gutters">
-        <div class="card mb-3 col-md-12" style="max-width: 600px;">
-
-
-            <div class="card-body">
-                <h5 class="card-title">@item.FullName.</h5>
-                <p class="card-text">
-                    <small class="text-muted">
-                       @item.DateOfBirth.ToShortDateString()
-                    </small>
-                </p>
-            </div>
-
-        </div>
+<div class="col-md-12 row">    
+    <div class="col-md-4">
+        <h4>A-H</h4>
+        <hr />
+        @foreach (var customer in Model.Customers_A_To_H)
+        {
+            <p><a asp-page="Details" asp-route-id="@customer.Id">@customer.FullName</a></p>
+        }
     </div>
-}
+
+    <div class="col-md-4">
+        <h4>I-P</h4>
+        <hr />
+        @foreach (var customer in Model.Customers_I_To_P)
+        {
+            <p><a asp-page="Details" asp-route-id="@customer.Id">@customer.FullName</a></p>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <h4>Q-Z</h4>
+        <hr />
+        @foreach (var customer in Model.Customers_Q_To_Z)
+        {
+            <p><a asp-page="Details" asp-route-id="@customer.Id">@customer.FullName</a></p>
+        }
+    </div>
+
+</div>

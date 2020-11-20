@@ -107,3 +107,14 @@ body {
     padding: 0px 4px 0px 8px;
     line-height: 20px;
 }
+
+/* Card blocks */
+
+.cardBlock {
+    float: left;
+    width: 250px;
+    max-width: 250px;
+    height: 150px;
+    max-height: 150px;
+
+}

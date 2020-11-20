@@ -28,6 +28,11 @@
                 <span asp-validation-for="CustomerDetails.DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="CustomerDetails.StreetAddress" class="control-label"></label>
+                <input asp-for="CustomerDetails.StreetAddress" class="form-control" />
+                <span asp-validation-for="CustomerDetails.StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CustomerDetails.PhoneNumber" class="control-label"></label>
                 <input asp-for="CustomerDetails.PhoneNumber" class="form-control" />
                 <span asp-validation-for="CustomerDetails.PhoneNumber" class="text-danger"></span>
@@ -45,7 +50,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Customers">Back to List</a>
 </div>
 
 @section Scripts {

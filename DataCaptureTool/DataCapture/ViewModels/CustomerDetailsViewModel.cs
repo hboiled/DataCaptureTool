@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 namespace DataCapture.ViewModels
 {
     public class CustomerDetailsViewModel
-    {  
+    {
+        public int Id { get; set; }
+
         [Required]
         [DisplayName("First Name:")]
         public string FirstName { get; set; }

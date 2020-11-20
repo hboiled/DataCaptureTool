@@ -19,15 +19,30 @@ namespace DataCapture.Pages.CustomerData
         }
 
         [BindProperty]
-        public List<CustomerDetailsViewModel> CustomerDetails { get; set; }
+        public List<CustomerDetailsViewModel> Customers_A_To_H { get; set; }
+        [BindProperty]
+        public List<CustomerDetailsViewModel> Customers_I_To_P { get; set; }
+        [BindProperty]
+        public List<CustomerDetailsViewModel> Customers_Q_To_Z { get; set; }
 
         public void OnGet()
         {
             List<CustomerDetailsViewModel> customerDetails = db.GetCustomerDetails();
 
+            // implement sort
             if (customerDetails.Count > 0)
             {
-                CustomerDetails = customerDetails;
+                Customers_A_To_H = customerDetails
+                    .Where(c => c.LastName[0].CompareTo('h') <= 0)
+                    .ToList();
+
+                Customers_I_To_P = customerDetails
+                    .Where(c => c.LastName[0].CompareTo('p') <= 0 && c.LastName[0].CompareTo('i') >= 0)
+                    .ToList();
+
+                Customers_Q_To_Z = customerDetails
+                    .Where(c => c.LastName[0].CompareTo('q') >= 0)
+                    .ToList();
             }
         }
 
