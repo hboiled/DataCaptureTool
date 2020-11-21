@@ -39,7 +39,7 @@ namespace DataCapture.ViewModels
 
         [Required]
         [DisplayName("Street Address:")]
-        [RegularExpression(@"[0-9]+[a-zA-Z]?\s([a-zA-Z\\s]+[,]{1}[\s]{1}){3}[A-Z]+[,]{1}[\s]{1}[0-9]{4}", 
+        [RegularExpression(@"[0-9]+[a-zA-Z\s]?\s([a-zA-Z\s]+[,]{1}[\s]{1}){3}[A-Z]+[,]{1}[\s]{1}[0-9]{4}", 
             ErrorMessage = "Address must match the following pattern: 123(Optional unit number) StreetName, MySuburb, ThisCity, WA(State acronym), 5912 (4 digit post code)")]
         public string StreetAddress { get; set; }
 

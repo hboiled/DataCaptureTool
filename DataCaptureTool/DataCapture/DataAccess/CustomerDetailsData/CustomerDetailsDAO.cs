@@ -59,25 +59,6 @@ namespace DataCapture.DataAccess.CustomerDetailsData
             return customer;
         }
 
-        //private CustomerDetailsViewModel MapToCustomerDetailsVM(CustomerDetails customer)
-        //{
-        //    int customerId = customer.Id;
-
-        //    var phoneNumber = GetPhoneNumberById(customerId);
-        //    var driversLicense = GetDriversLicenseById(customerId);
-
-        //    CustomerDetailsViewModel customerDetails = new CustomerDetailsViewModel
-        //    {
-        //        FirstName = customer.FirstName,
-        //        LastName = customer.LastName,
-        //        DateOfBirth = customer.DateOfBirth,
-        //        PhoneNumber = phoneNumber.Number,
-        //        DriversLicenseNumber = driversLicense.DriversLicenseNumber
-        //    };
-
-        //    return customerDetails;
-        //}
-
         public int SaveCustomerDetails(CustomerDetailsViewModel customer)
         {
             // can be improved using transactions
