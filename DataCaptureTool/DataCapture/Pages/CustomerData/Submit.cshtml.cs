@@ -11,9 +11,9 @@ namespace DataCapture.Pages.CustomerData
 {
     public class SubmitModel : PageModel
     {
-        private readonly ICustomerDetailsRepository db;
+        private readonly ICustomerDetailsDAO db;
 
-        public SubmitModel(ICustomerDetailsRepository db)
+        public SubmitModel(ICustomerDetailsDAO db)
         {
             this.db = db;
         }

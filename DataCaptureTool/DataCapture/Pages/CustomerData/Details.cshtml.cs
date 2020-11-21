@@ -11,9 +11,9 @@ namespace DataCapture.Pages.CustomerData
 {
     public class DetailsModel : PageModel
     {
-        private readonly ICustomerDetailsRepository db;
+        private readonly ICustomerDetailsDAO db;
 
-        public DetailsModel(ICustomerDetailsRepository db)
+        public DetailsModel(ICustomerDetailsDAO db)
         {
             this.db = db;
         }
@@ -22,7 +22,7 @@ namespace DataCapture.Pages.CustomerData
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToPage("Customers");
             }
 
 
@@ -30,7 +30,7 @@ namespace DataCapture.Pages.CustomerData
 
             if (CustomerDetails == null)
             {
-                return NotFound();
+                return RedirectToPage("Customers");
             }
 
             return Page();

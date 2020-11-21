@@ -11,24 +11,27 @@ namespace DataCapture.Pages.CustomerData
 {
     public class CustomersModel : PageModel
     {
-        private readonly ICustomerDetailsRepository db;
+        private readonly ICustomerDetailsDAO db;
 
-        public CustomersModel(ICustomerDetailsRepository db)
+        public CustomersModel(ICustomerDetailsDAO db)
         {
             this.db = db;
         }
 
         [BindProperty]
-        public List<CustomerDetailsViewModel> Customers_A_To_H { get; set; }
+        public string ErrorMsg { get; set; }
+
         [BindProperty]
-        public List<CustomerDetailsViewModel> Customers_I_To_P { get; set; }
+        public List<CustomerDetailsViewModel> Customers_A_To_H { get; set; } = new List<CustomerDetailsViewModel>();
         [BindProperty]
-        public List<CustomerDetailsViewModel> Customers_Q_To_Z { get; set; }
+        public List<CustomerDetailsViewModel> Customers_I_To_P { get; set; } = new List<CustomerDetailsViewModel>();
+        [BindProperty]
+        public List<CustomerDetailsViewModel> Customers_Q_To_Z { get; set; } = new List<CustomerDetailsViewModel>();
 
         public void OnGet()
         {
             List<CustomerDetailsViewModel> customerDetails = db.GetCustomerDetails();
-
+            //customerDetails.Add(new CustomerDetailsViewModel {FirstName="a",LastName="as",DateOfBirth=new DateTime(1),DriversLicenseNumber="as",PhoneNumber=1,StreetAddress="a" });
             // implement sort
             if (customerDetails.Count > 0)
             {
@@ -43,6 +46,12 @@ namespace DataCapture.Pages.CustomerData
                 Customers_Q_To_Z = customerDetails
                     .Where(c => c.LastName[0].CompareTo('q') >= 0)
                     .ToList();
+
+            }
+            else
+            {
+                
+                ErrorMsg = "There are currently no entries.";
             }
         }
 

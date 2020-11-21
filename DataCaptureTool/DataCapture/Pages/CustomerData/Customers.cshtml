@@ -38,5 +38,13 @@
             <p><a asp-page="Details" asp-route-id="@customer.Id">@customer.FullName</a></p>
         }
     </div>
-
 </div>
+
+@if (Model.ErrorMsg != null) 
+{
+    <div class="text-center">
+        <h4 style="color: red">
+            @Model.ErrorMsg
+        </h4>
+    </div>
+}
