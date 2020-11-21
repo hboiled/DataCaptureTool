@@ -23,7 +23,7 @@ namespace DataCapture.DataAccess.CustomerDetailsData
         public List<CustomerDetailsViewModel> GetCustomerDetails()
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.Number, DriversLicenses.DriversLicenseNumber FROM Customers ");
+            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.PhoneNumber, DriversLicenses.DriversLicenseNumber FROM Customers ");
             sql.Append("INNER JOIN Addresses on Addresses.CustomerId = Customers.Id ");
             sql.Append("INNER JOIN PhoneNumbers on PhoneNumbers.CustomerId = Customers.Id ");
             sql.Append("INNER JOIN DriversLicenses on DriversLicenses.CustomerId = Customers.Id ");
@@ -42,7 +42,7 @@ namespace DataCapture.DataAccess.CustomerDetailsData
         public CustomerDetailsViewModel GetCustomerById(int id)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.Number, DriversLicenses.DriversLicenseNumber FROM Customers ");
+            sql.Append("SELECT Customers.Id, Customers.FirstName, Customers.LastName, Customers.DateOfBirth, Addresses.StreetAddress, PhoneNumbers.PhoneNumber, DriversLicenses.DriversLicenseNumber FROM Customers ");
             sql.Append("INNER JOIN Addresses on Addresses.CustomerId = Customers.Id ");
             sql.Append("INNER JOIN PhoneNumbers on PhoneNumbers.CustomerId = Customers.Id ");
             sql.Append("INNER JOIN DriversLicenses on DriversLicenses.CustomerId = Customers.Id ");
@@ -98,12 +98,12 @@ namespace DataCapture.DataAccess.CustomerDetailsData
                 .FirstOrDefault();
 
             // save phone numbers
-            string sqlSavePhoneNumbers = "INSERT INTO PhoneNumbers (CustomerId, Number) " +
-                "values (@CustomerId, @Number);";
+            string sqlSavePhoneNumbers = "INSERT INTO PhoneNumbers (CustomerId, PhoneNumber) " +
+                "values (@CustomerId, @PhoneNumber);";
 
             db.ExecuteStatement<dynamic>(
                 sqlSavePhoneNumbers,
-                new { CustomerId = customerId, Number = customer.PhoneNumber },
+                new { CustomerId = customerId, PhoneNumber = customer.PhoneNumber },
                 connectionString);
 
             // save drivers licenses
