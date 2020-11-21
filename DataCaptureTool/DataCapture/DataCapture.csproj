@@ -9,4 +9,10 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DataCaptureDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
