@@ -27,8 +27,8 @@ namespace DataCapture.ViewModels
         public DateTime DateOfBirth { get; set; }
 
         [DisplayName("Phone Number:")]
-        [RegularExpression("[0-9]{8}",
-            ErrorMessage = "Phone number should be 8 digits long")]
+        [RegularExpression(@"^(\d{8}|\d{10})$",
+            ErrorMessage = "Phone number should be 8 digits for landline or 10 digits for mobile")]
         public int PhoneNumber { get; set; }
         
         [Required]
