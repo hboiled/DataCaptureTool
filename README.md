@@ -2,7 +2,8 @@
 
 ### Live Deployment to Azure:
 https://wespyonyoudatacapture.azurewebsites.net/
-Build Status:
+
+### Build Status:
 [![Build status](https://dev.azure.com/sfleeRMS/WeSpyDataCapture/_apis/build/status/WeSpyDataCapture-ASP.NET-CI)](https://dev.azure.com/sfleeRMS/WeSpyDataCapture/_build/latest?definitionId=3)
 
 ## Build Instructions:
