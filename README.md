@@ -1,5 +1,10 @@
 # We Spy On You Enterprises -- Self-Service Data Capture Tool
 
+### Live Deployment to Azure:
+https://wespyonyoudatacapture.azurewebsites.net/
+Build Status:
+[![Build status](https://dev.azure.com/sfleeRMS/WeSpyDataCapture/_apis/build/status/WeSpyDataCapture-ASP.NET-CI)](https://dev.azure.com/sfleeRMS/WeSpyDataCapture/_build/latest?definitionId=3)
+
 ## Build Instructions:
 Beginning from the GitHub repository:
 - Ensure dotnet Core SDK is installed (application built using version 3.1.x)
@@ -26,3 +31,12 @@ The address, phone number, drivers license properties have been made into their 
 
 - Transactions:
 I implemented the SaveCustomerDetails method to just make separate calls to save data, instead of being done so in a transaction. Transactions offer a data management improvement to the application, as it will protect the database from incomplete or invalid data populating its tables. This would result in a more resilient application. I have implemented a transaction before in a demo application, but I am not 100% comfortable with its reliability, so I did not implement it in this case. For production-ready code, I think it is better to not implement features the developer isn't completely comfortable with.
+
+## Screenshots:
+![Home](https://github.com/hboiled/DataCaptureTool/blob/main/screenshots/home.png?raw=true)
+
+![Details View](https://github.com/hboiled/DataCaptureTool/blob/main/screenshots/detailsview.png?raw=true)
+
+![Form Validation](https://github.com/hboiled/DataCaptureTool/blob/main/screenshots/formvalidation.png?raw=true)
+
+![List View](https://github.com/hboiled/DataCaptureTool/blob/main/screenshots/listview.png?raw=true)
