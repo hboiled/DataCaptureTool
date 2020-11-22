@@ -31,7 +31,7 @@ namespace DataCapture.Pages.CustomerData
         public void OnGet()
         {
             List<CustomerDetailsViewModel> customerDetails = db.GetCustomerDetails();
-            //customerDetails.Add(new CustomerDetailsViewModel {FirstName="a",LastName="as",DateOfBirth=new DateTime(1),DriversLicenseNumber="as",PhoneNumber=1,StreetAddress="a" });
+            
             // implement sort
             if (customerDetails.Count > 0)
             {

@@ -9,10 +9,6 @@ namespace DataCapture.Models
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public string StreetAddress { get; set; }
-        public string Suburb { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public int PostCode { get; set; }
+        public string StreetAddress { get; set; }        
     }
 }

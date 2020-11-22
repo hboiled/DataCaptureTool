@@ -20,6 +20,8 @@ namespace DataCapture.Pages.CustomerData
 
         [BindProperty]
         public CustomerDetailsViewModel CustomerDetails { get; set; }
+        [BindProperty]
+        public string ErrorSaving { get; set; }
 
         public void OnGet()
         {
@@ -32,9 +34,17 @@ namespace DataCapture.Pages.CustomerData
                 return Page();
             }
 
-            int customerId = db.SaveCustomerDetails(CustomerDetails);
-
-            return RedirectToPage("Details", new { id = customerId } );
+            try
+            {                
+                int customerId = db.SaveCustomerDetails(CustomerDetails);
+                return RedirectToPage("Details", new { id = customerId });
+            }
+            catch (Exception ex)
+            {
+                // error messages kept vague for production
+                ErrorSaving = "An error was encountered. Please log this error and send it to the appropriate personnel for further investigation.";
+                return Page();
+            }
         }
     }
 }

@@ -52,6 +52,7 @@ namespace DataCaptureTests.DataAccess.CustomerDetailsData
         [InlineData(3)]
         public void GetCustomerById_ReturnsValidCustomerDetails(int id)
         {
+            // arrange
             List<CustomerDetailsViewModel> customers = GetListOfSampleCustomers()
                 .Where(c => c.Id == id)
                 .ToList();
@@ -75,6 +76,7 @@ namespace DataCaptureTests.DataAccess.CustomerDetailsData
         [ClassData(typeof(TestDataCustomerDetails))]
         public void SaveCustomerDetails_HandlesSubmissionsCorrectly(CustomerDetailsViewModel customer)
         {
+            // setup
             string sqlPerson = CreateCustomerSql()["SaveCustomerRetrieveId"];
             string sqlPhoneNumbers = CreateCustomerSql()["SavePhoneNumbers"];
             string sqlDriversLicense = CreateCustomerSql()["SaveDriversLicense"];
@@ -94,6 +96,8 @@ namespace DataCaptureTests.DataAccess.CustomerDetailsData
             db.Verify(x => x.ExecuteStatement<dynamic>(sqlAddresses, It.IsAny<object>(), conStr), Times.Exactly(1));
         }
 
+        #region Setup
+        
         private string SelectAllCustomersSqlStatement()
         {
             StringBuilder sql = new StringBuilder();
@@ -181,5 +185,6 @@ namespace DataCaptureTests.DataAccess.CustomerDetailsData
                 }
             };
         }
+        #endregion
     }
 }

@@ -50,5 +50,23 @@ namespace DataCapture.ViewModels
                 return $"{FirstName} {LastName}";
             }
         }
+
+        [DisplayName("Age:")]
+        public int Age
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                int age = today.Year - DateOfBirth.Year;
+
+                if (today.Month < DateOfBirth.Month ||
+                   ((today.Month == DateOfBirth.Month) && (today.Day < DateOfBirth.Day)))
+                {
+                    age--;
+                }
+
+                return age;
+            }
+        }
     }
 }

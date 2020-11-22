@@ -27,7 +27,7 @@ namespace DataCapture
         {
             services.AddRazorPages();
 
-            services.AddScoped<ICustomerDetailsDAO>(r => new CustomerDetailsDAO(
+            services.AddTransient<ICustomerDetailsDAO>(r => new CustomerDetailsDAO(
                 Configuration.GetConnectionString("DataCaptureDB"), new SqliteDataAccess()
                 ));
         }

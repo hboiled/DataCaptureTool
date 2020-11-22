@@ -6,6 +6,13 @@
 
 <h1>Submit Your Details</h1>
 
+@if (Model.ErrorSaving != null)
+{
+<div class="alert-danger text-center">
+    <h4>@Model.ErrorSaving</h4>
+</div>    
+}
+
 <h4>Your Details</h4>
 <hr />
 <div class="row">
