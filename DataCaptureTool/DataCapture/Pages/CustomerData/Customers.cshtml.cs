@@ -32,25 +32,26 @@ namespace DataCapture.Pages.CustomerData
         {
             List<CustomerDetailsViewModel> customerDetails = db.GetCustomerDetails();
             
-            // implement sort
             if (customerDetails.Count > 0)
             {
                 Customers_A_To_H = customerDetails
-                    .Where(c => c.LastName[0].CompareTo('h') <= 0)
+                    .Where(c => c.LastName.ToLower()[0].CompareTo('h') <= 0)
+                    .OrderBy(c => c.LastName)
                     .ToList();
 
                 Customers_I_To_P = customerDetails
-                    .Where(c => c.LastName[0].CompareTo('p') <= 0 && c.LastName[0].CompareTo('i') >= 0)
+                    .Where(c => c.LastName.ToLower()[0].CompareTo('p') <= 0 && c.LastName.ToLower()[0].CompareTo('i') >= 0)
+                    .OrderBy(c => c.LastName)
                     .ToList();
 
                 Customers_Q_To_Z = customerDetails
-                    .Where(c => c.LastName[0].CompareTo('q') >= 0)
+                    .Where(c => c.LastName.ToLower()[0].CompareTo('q') >= 0)
+                    .OrderBy(c => c.LastName)
                     .ToList();
 
             }
             else
-            {
-                
+            {                
                 ErrorMsg = "There are currently no entries.";
             }
         }
