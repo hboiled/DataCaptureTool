@@ -14,6 +14,7 @@ Beginning from the GitHub repository:
 - Make sure to enable development SSL certificate for HTTPS
 - All dependencies should be downloaded from the build command
 - Ctrl + F5 to run in development without debugging
+- Tests can be run using the Visual Studio test runner
 
 ## Operating Instructions:
 - Upon loading the home page, do as the page instructs and click the hyperlink "here" to load the form 
@@ -21,6 +22,11 @@ Beginning from the GitHub repository:
 - Enter user information, the form will display validation errors so that the user knows how to properly format their information
 - Click submit and the user will be redirected to a detailed view of their information, summarised
 - Click "Back to List" or "View Entries" from the navbar to see all users who have submitted their data
+
+## Dependencies:
+- Sqlite Data, Dapper and Moq
+- Sqlite DB is bundled with the project and works as is
+- The test project is based on the standard Visual Studio XUnit template
 
 ## Design Choices
 
